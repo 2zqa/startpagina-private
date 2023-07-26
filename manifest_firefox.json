@@ -1,7 +1,7 @@
 {
     "name": "Startpagina",
     "description": "Startpage with useful links",
-    "version": "1.12.1",
+    "version": "1.13.0",
     "icons": {
         "48": "logo.png"
     },
@@ -11,6 +11,6 @@
     "chrome_settings_overrides": {
         "homepage": "blank.html"
     },
-    "homepage_url": "https://github.com/2zqa/startpagina",
+    "homepage_url": "https://github.com/2zqa/startpagina-private",
     "manifest_version": 2
 }
