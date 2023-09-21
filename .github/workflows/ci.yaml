@@ -1,0 +1,70 @@
+name: "Build and publish"
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  pages: write # For publishing the update manifest
+  id-token: write # To verify the deployment originates from an appropriate source
+  contents: write # For creating a release
+
+jobs:
+  build-and-sign:
+    name: "Build and sign"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: "Build extensions"
+        run: make all
+      - name: "Sign Firefox extension"
+        id: web-ext-sign
+        uses: kewisch/action-web-ext@v1
+        with:
+          cmd: sign
+          source: build/startpagina_firefox.zip
+          channel: unlisted
+          apiKey: ${{ secrets.AMO_SIGN_KEY }}
+          apiSecret: ${{ secrets.AMO_SIGN_SECRET }}
+          timeout: 900000
+      - name: "Upload chromium and signed firefox extension"
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: |
+            ${{ steps.web-ext-sign.outputs.target }}
+            build/startpagina_chromium/
+
+  release:
+    name: "Release"
+    needs: build-and-sign
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        id: download
+        with:
+          name: build
+      - name: "Create Release"
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ steps.download.outputs.download-path }}
+
+  deploy:
+    name: "Deploy to GitHub pages"
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - run: mkdir out
+      - name: "Generate update manifest"
+        uses: 2zqa/generate-update-manifest@2a90b178b37fd79513dfd2ec7dae7eace7a45f2a
+        with:
+          addon-id: ${{ vars.ADDON_ID }}
+          output-file: out/updates.json
+      - uses: actions/upload-pages-artifact@v2
+        with:
+          name: update-manifest
+          path: out
+      - uses: actions/deploy-pages@v2
+        with:
+          artifact_name: "update-manifest"
