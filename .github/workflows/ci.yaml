@@ -18,6 +18,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: "Build extensions"
         run: make all
+      - run: mkdir web-ext-artifacts # Needed for web-ext-sign
       - name: "Sign Firefox extension"
         id: web-ext-sign
         uses: kewisch/action-web-ext@v1
@@ -28,7 +29,6 @@ jobs:
           apiKey: ${{ secrets.AMO_SIGN_KEY }}
           apiSecret: ${{ secrets.AMO_SIGN_SECRET }}
           timeout: 900000
-          # filename: startpagina_firefox.xpi
           verbose: true
       - name: "Upload chromium and signed firefox extension"
         uses: actions/upload-artifact@v3
