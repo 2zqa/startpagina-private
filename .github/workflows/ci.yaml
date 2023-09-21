@@ -5,11 +5,6 @@ on:
     tags:
       - "v*.*.*"
 
-permissions:
-  pages: write # For publishing the update manifest
-  id-token: write # To verify the deployment originates from an appropriate source
-  contents: write # For creating a release
-
 jobs:
   build-and-sign:
     name: "Build and sign"
@@ -42,6 +37,8 @@ jobs:
     name: "Release"
     needs: build-and-sign
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # For creating a release
     steps:
       - uses: actions/download-artifact@v3
         id: download
@@ -56,6 +53,9 @@ jobs:
     name: "Deploy to GitHub pages"
     needs: release
     runs-on: ubuntu-latest
+    permissions:
+      pages: write # Needed for deploying to GitHub pages
+      id-token: write # To verify the deployment originates from an appropriate source
     steps:
       - run: mkdir out
       - name: "Generate update manifest"
