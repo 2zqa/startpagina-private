@@ -1,5 +1,5 @@
 #!/bin/bash
-ignore="Makefile README.md manifest_*.json"
+ignore="Makefile README.md manifest_*.json build.sh"
 
 function firefox {
     echo "=> Preparing to build Firefox extension"
