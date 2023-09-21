@@ -1,26 +1,24 @@
 #!/bin/bash
-BUILDDIR=${2:-web-ext-artifacts}
-name=startpagina
 ignore="Makefile README.md manifest_*.json"
 
 function firefox {
-    echo "=> Preparing to build $name for Firefox"
+    echo "=> Preparing to build extension for Firefox"
     mv manifest_firefox.json manifest.json
-    if web-ext build --ignore-files=$ignore --artifacts-dir=$BUILDDIR --filename="$name-{version}-firefox.zip"; then
-        echo "=> Successfully built $name for Firefox"
+    if web-ext build --ignore-files=$ignore --filename="{name}-{version}-firefox.zip"; then
+        echo "=> Successfully built extension for Firefox"
     else
-        echo "=> Errors occurred while building $name for Firefox"
+        echo "=> Errors occurred while building extension for Firefox"
     fi
     mv manifest.json manifest_firefox.json
 }
 
 function chromium {
-    echo "=> Preparing to build $name for Chromium"
+    echo "=> Preparing to build extension for Chromium"
     mv manifest_chromium.json manifest.json
-    if web-ext build --ignore-files=$ignore --artifacts-dir=$BUILDDIR --filename="$name-{version}-chromium.zip"; then
-        echo "=> Successfully built $name for Chromium"
+    if web-ext build --ignore-files=$ignore --filename="{name}-{version}-chromium.zip"; then
+        echo "=> Successfully built extension for Chromium"
     else
-        echo "=> Errors occurred while building $name for Chromium"
+        echo "=> Errors occurred while building extension for Chromium"
     fi
     mv manifest.json manifest_chromium.json
 }
@@ -41,10 +39,10 @@ case "$1" in
         all
         ;;
     clean)
-        rm -rf $BUILDDIR/
+        rm -rf web-ext-artifacts/
         ;;
     *)
-        echo "Usage: $0 {firefox|chromium|all|clean} [BUILDDIR]"
+        echo "Usage: $0 {firefox|chromium|all|clean}"
         exit 1
 esac
 
