@@ -1,21 +1,21 @@
 {
-    "name": "Startpagina",
-    "description": "Startpage with useful links",
-    "version": "1.13.0",
-    "icons": {
-        "48": "logo.png"
-    },
-    "chrome_url_overrides": {
-        "newtab": "blank.html"
-    },
-    "chrome_settings_overrides": {
-        "homepage": "blank.html"
-    },
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "{59f1a8c7-2750-453e-8ff9-6df3861a143b}"
-        }
-    },
-    "homepage_url": "https://github.com/2zqa/startpagina-private",
-    "manifest_version": 2
+  "name": "Startpagina",
+  "description": "Startpage with useful links",
+  "version": "1.13.1",
+  "icons": {
+    "48": "logo.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "blank.html"
+  },
+  "chrome_settings_overrides": {
+    "homepage": "blank.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{59f1a8c7-2750-453e-8ff9-6df3861a143b}"
+    }
+  },
+  "homepage_url": "https://github.com/2zqa/startpagina-private",
+  "manifest_version": 2
 }
