@@ -11,6 +11,11 @@
     "chrome_settings_overrides": {
         "homepage": "blank.html"
     },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "{59f1a8c7-2750-453e-8ff9-6df3861a143b}"
+        }
+    },
     "homepage_url": "https://github.com/2zqa/startpagina-private",
     "manifest_version": 2
 }
