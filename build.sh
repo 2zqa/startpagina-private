@@ -2,23 +2,23 @@
 ignore="Makefile README.md manifest_*.json"
 
 function firefox {
-    echo "=> Preparing to build extension for Firefox"
+    echo "=> Preparing to build Firefox extension"
     mv manifest_firefox.json manifest.json
     if web-ext build --ignore-files=$ignore --filename="{name}-{version}-firefox.xpi"; then
-        echo "=> Successfully built extension for Firefox"
+        echo "=> Successfully built Firefox extension"
     else
-        echo "=> Errors occurred while building extension for Firefox"
+        echo "=> Errors occurred while building Firefox extension"
     fi
     mv manifest.json manifest_firefox.json
 }
 
 function chromium {
-    echo "=> Preparing to build extension for Chromium"
+    echo "=> Preparing to build Chromium extension"
     mv manifest_chromium.json manifest.json
     if web-ext build --ignore-files=$ignore --filename="{name}-{version}-chromium.zip"; then
-        echo "=> Successfully built extension for Chromium"
+        echo "=> Successfully built Chromium extension"
     else
-        echo "=> Errors occurred while building extension for Chromium"
+        echo "=> Errors occurred while building Chromium extension"
     fi
     mv manifest.json manifest_chromium.json
 }
