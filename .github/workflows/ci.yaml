@@ -23,12 +23,12 @@ jobs:
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: build/startpagina_firefox.zip
+          source: build/startpagina_firefox.xpi
           channel: unlisted
           apiKey: ${{ secrets.AMO_SIGN_KEY }}
           apiSecret: ${{ secrets.AMO_SIGN_SECRET }}
           timeout: 900000
-          filename: startpagina_firefox.zip
+          # filename: startpagina_firefox.xpi
           verbose: true
       - name: "Upload chromium and signed firefox extension"
         uses: actions/upload-artifact@v3
