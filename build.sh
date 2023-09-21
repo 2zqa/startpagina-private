@@ -4,7 +4,7 @@ ignore="Makefile README.md manifest_*.json"
 function firefox {
     echo "=> Preparing to build extension for Firefox"
     mv manifest_firefox.json manifest.json
-    if web-ext build --ignore-files=$ignore --filename="{name}-{version}-firefox.zip"; then
+    if web-ext build --ignore-files=$ignore --filename="{name}-{version}-firefox.xpi"; then
         echo "=> Successfully built extension for Firefox"
     else
         echo "=> Errors occurred while building extension for Firefox"
