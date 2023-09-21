@@ -20,7 +20,7 @@ jobs:
         run: make all
       - name: "Sign Firefox extension"
         id: web-ext-sign
-        uses: kewisch/action-web-ext@cb8a69420fea686e331e270b6581d4d289ecb2d2
+        uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
           source: build/startpagina_firefox.zip
