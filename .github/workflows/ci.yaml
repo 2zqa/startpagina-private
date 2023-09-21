@@ -29,6 +29,7 @@ jobs:
           apiSecret: ${{ secrets.AMO_SIGN_SECRET }}
           timeout: 900000
           filename: startpagina_firefox.zip
+          verbose: true
       - name: "Upload chromium and signed firefox extension"
         uses: actions/upload-artifact@v3
         with:
