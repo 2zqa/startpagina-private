@@ -4,15 +4,15 @@ name=startpagina
 sourcefiles=blank.html style.css clock.js LICENSE logo.png
 
 .PHONY: all
-all: $(BUILDDIR)/$(name)_firefox.xpi $(BUILDDIR)/$(name)_chromium
+all: $(BUILDDIR)/$(name)_firefox.zip $(BUILDDIR)/$(name)_chromium
 
-$(BUILDDIR)/$(name)_firefox.xpi: $(sourcefiles) manifest_firefox.json | $(BUILDDIR)
-	@echo "=> Preparing to build $(name)_firefox.xpi"
-	rm -f $(BUILDDIR)/$(name)_firefox.xpi
+$(BUILDDIR)/$(name)_firefox.zip: $(sourcefiles) manifest_firefox.json | $(BUILDDIR)
+	@echo "=> Preparing to build $(name)_firefox.zip"
+	rm -f $(BUILDDIR)/$(name)_firefox.zip
 	mv manifest_firefox.json manifest.json
-	zip -r $(BUILDDIR)/$(name)_firefox.xpi $(sourcefiles) manifest.json
+	zip -r $(BUILDDIR)/$(name)_firefox.zip $(sourcefiles) manifest.json
 	mv manifest.json manifest_firefox.json
-	@echo "=> Successfully built $(name)_firefox.xpi"
+	@echo "=> Successfully built $(name)_firefox.zip"
 
 $(BUILDDIR)/$(name)_chromium: $(sourcefiles) manifest_chromium.json | $(BUILDDIR)
 	@echo "=> Preparing to build $(name)_chromium"
