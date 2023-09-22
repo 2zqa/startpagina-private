@@ -6,7 +6,7 @@ on:
       - "v*.*.*"
 
 env:
-  IGNORED_FILES: "Makefile README.md manifest_*.json build.sh"
+  IGNORED_FILES: '[ "Makefile" "README.md" "manifest_*.json" "build.sh" ]'
 
 jobs:
   build-and-sign:
