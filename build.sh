@@ -51,6 +51,24 @@ function all {
     chromium
 }
 
+function set_version {
+    if [ -z "$version" ]; then
+        echo "Missing version. Usage: $0 set_version <version>"
+        exit 1
+    fi
+
+    for file in manifest_*.json; do
+        if [ -f "$file" ]; then
+            echo "Bumping version in $file to $version"
+            sed -i "s/\"version\": \".*\"/\"version\": \"$version\"/" "$file"
+            git add "$file"
+        fi
+    done
+
+    echo "=> Committing and tagging version v$version"
+    git commit -m "Bump version to v$version" && git tag "v$version"
+}
+
 case "$1" in
     lint)
         lint
@@ -67,8 +85,12 @@ case "$1" in
     clean)
         rm -rf web-ext-artifacts/
         ;;
+    set_version)
+        version=$2
+        set_version
+        ;;
     *)
-        echo "Usage: $0 {firefox|chromium|all|clean|lint}"
+        echo "Usage: $0 {firefox|chromium|all|clean|lint|set_version <version>}"
         exit 1
 esac
 
