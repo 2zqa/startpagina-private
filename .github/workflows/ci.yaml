@@ -91,4 +91,4 @@ jobs:
         with:
           artifact_name: "update-manifest"
       - run: |
-          echo "Deployed update manifest to ${{ steps.deploy.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "Deployed update manifest to ${{ steps.deploy.outputs.page_url }}updates.json" >> $GITHUB_STEP_SUMMARY
