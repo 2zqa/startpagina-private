@@ -5,13 +5,12 @@ on:
     tags:
       - "v*.*.*"
 
-env:
-  IGNORED_FILES: '[ "Makefile", "README.md", "manifest_*.json", "build.sh" ]'
-
 jobs:
   build-and-sign:
     name: "Build and sign"
     runs-on: ubuntu-latest
+    env:
+      IGNORED_FILES: '[ "Makefile", "README.md", "manifest_*.json", "build.sh" ]'
     steps:
       - uses: actions/checkout@v3
       - run: mv manifest_firefox.json manifest.json
