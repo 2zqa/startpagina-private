@@ -46,6 +46,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           if-no-files-found: error
+          name: build
           path: |
             ${{ steps.chromium-build.outputs.target }}
             ${{ steps.web-ext-sign.outputs.target }}
@@ -75,16 +76,16 @@ jobs:
       pages: write # Needed for deploying to GitHub pages
       id-token: write # To verify the deployment originates from an appropriate source
     steps:
-      - run: mkdir out
+      - run: mkdir public
       - name: "Generate update manifest"
         uses: 2zqa/generate-update-manifest@2a90b178b37fd79513dfd2ec7dae7eace7a45f2a
         with:
           addon-id: ${{ vars.ADDON_ID }}
-          output-file: out/updates.json
+          output-file: public/updates.json
       - uses: actions/upload-pages-artifact@v2
         with:
           name: update-manifest
-          path: out
+          path: public
       - uses: actions/deploy-pages@v2
         id: deploy
         with:
