@@ -72,7 +72,7 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     permissions:
-      contents: read # For downloading the release
+      contents: read # For downloading the releases
       pages: write # Needed for deploying to GitHub pages
       id-token: write # To verify the deployment originates from an appropriate source
     steps:
