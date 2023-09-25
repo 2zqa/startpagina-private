@@ -7,6 +7,6 @@ $(commands):
 
 .PHONY: set_version
 set_version:
-	@read -p "Enter version string: " version; \
+	@read -p "Enter version string (e.g. 1.0.0): " version; \
 	$(BUILDSCRIPT) set_version $$version
 
