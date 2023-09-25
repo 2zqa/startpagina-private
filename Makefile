@@ -1,4 +1,4 @@
-BUILDSCRIPT=./build.sh
+BUILDSCRIPT=./make-scripts.sh
 commands=build/all build/firefox build/chromium run/firefox run/chromium clean lint
 
 .PHONY: $(commands)
