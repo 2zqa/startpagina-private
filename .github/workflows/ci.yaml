@@ -16,7 +16,7 @@ jobs:
       - run: mv manifest_firefox.json manifest.json
       - name: "Build Firefox extension"
         id: firefox-build
-        uses: kewisch/action-web-ext@v1
+        uses: kewisch/action-web-ext@v1.2
         with:
           cmd: build
           ignoreFiles: ${{ env.IGNORED_FILES }}
@@ -24,7 +24,7 @@ jobs:
       - run: mv manifest.json manifest_firefox.json && mv manifest_chromium.json manifest.json
       - name: "Build Chromium extension"
         id: chromium-build
-        uses: kewisch/action-web-ext@v1
+        uses: kewisch/action-web-ext@v1.2
         with:
           cmd: build
           ignoreFiles: ${{ env.IGNORED_FILES }}
@@ -32,7 +32,7 @@ jobs:
       - run: mv manifest.json manifest_chromium.json
       - name: "Sign Firefox extension"
         id: web-ext-sign
-        uses: kewisch/action-web-ext@v1
+        uses: kewisch/action-web-ext@v1.2
         with:
           cmd: sign
           source: ${{ steps.firefox-build.outputs.target }}
