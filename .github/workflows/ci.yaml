@@ -36,7 +36,6 @@ jobs:
         with:
           cmd: sign
           source: ${{ steps.firefox-build.outputs.target }}
-          filename: "{name}-{version}-firefox-signed.xpi"
           channel: unlisted
           apiKey: ${{ secrets.AMO_SIGN_KEY }}
           apiSecret: ${{ secrets.AMO_SIGN_SECRET }}
