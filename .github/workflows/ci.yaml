@@ -76,8 +76,7 @@ jobs:
       id-token: write # To verify the deployment originates from an appropriate source
     steps:
       - run: mkdir public
-      - name: "Generate update manifest"
-        uses: 2zqa/generate-update-manifest@b1a37f4c8edad216de3bbb74b354139f088dd3c4
+      - uses: 2zqa/generate-update-manifest@v1
         with:
           addon-id: ${{ vars.ADDON_ID }}
           output-file: public/updates.json
