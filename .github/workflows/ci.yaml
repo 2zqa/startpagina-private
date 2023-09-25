@@ -77,7 +77,7 @@ jobs:
     steps:
       - run: mkdir public
       - name: "Generate update manifest"
-        uses: 2zqa/generate-update-manifest@2a90b178b37fd79513dfd2ec7dae7eace7a45f2a
+        uses: 2zqa/generate-update-manifest@b1a37f4c8edad216de3bbb74b354139f088dd3c4
         with:
           addon-id: ${{ vars.ADDON_ID }}
           output-file: public/updates.json
