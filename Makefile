@@ -1,5 +1,5 @@
 BUILDSCRIPT=./build.sh
-commands=all firefox chromium clean lint
+commands=build/all build/firefox build/chromium run/firefox run/chromium clean lint
 
 .PHONY: $(commands)
 $(commands):

@@ -24,6 +24,20 @@ function lint {
     fi
 }
 
+function run_firefox {
+    echo "=> Running Firefox extension"
+    mv manifest_firefox.json manifest.json
+    web-ext run
+    mv manifest.json manifest_firefox.json
+}
+
+function run_chromium {
+    echo "=> Running Chromium extension"
+    mv manifest_chromium.json manifest.json
+    web-ext run --target=chromium
+    mv manifest.json manifest_chromium.json
+}
+
 function firefox {
     echo "=> Preparing to build Firefox extension"
     mv manifest_firefox.json manifest.json
@@ -70,16 +84,22 @@ function set_version {
 }
 
 case "$1" in
+    run/firefox)
+        run_firefox
+        ;;
+    run/chromium)
+        run_chromium
+        ;;
     lint)
         lint
         ;;
-    firefox)
+    build/firefox)
         firefox
         ;;
-    chromium)
+    build/chromium)
         chromium
         ;;
-    all)
+    build/all)
         all
         ;;
     clean)
@@ -90,7 +110,7 @@ case "$1" in
         set_version
         ;;
     *)
-        echo "Usage: $0 {firefox|chromium|all|clean|lint|set_version <version>}"
+        echo "Usage: $0 {firefox|chromium|all|clean|lint|run-firefox|run-chromium|set_version <version>}"
         exit 1
 esac
 
