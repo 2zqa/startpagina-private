@@ -34,7 +34,7 @@ Thanks for considering contributing! If you're new to contributing to open sourc
 2. Make your changes
 3. Submit a pull request
 
-**Note:** In case you add any source files, make sure to update the Makefile `sourcefiles` variable to reflect this.
+**Note:** In case you add any files that need to be ignored from the extension build process, make sure to update the build.sh `ignore` variable to reflect this.
 
 ## License
 
