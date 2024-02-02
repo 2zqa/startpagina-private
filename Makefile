@@ -1,6 +1,3 @@
-NAME=$(notdir $(CURDIR))
-IGNORE=manifest_*.json README.md Makefile scripts/
-VERSION=$(shell jq -r .version manifest_base.json)
 PLATFORMS=chromium firefox-desktop
 
 .PHONY: all
@@ -9,7 +6,7 @@ all: $(PLATFORMS)
 .PHONY: $(PLATFORMS)
 $(PLATFORMS):
 	cat manifest_base.json manifest_$(notdir $@).json | jq -s add > manifest.json
-	web-ext build --overwrite-dest --ignore-files=$(IGNORE) --filename $(NAME)-$(notdir $@)-$(VERSION).zip
+	web-ext build --filename "{name}-{version}-$(notdir $@).zip"
 
 .PHONY: $(addprefix run/,$(PLATFORMS))
 $(addprefix run/,$(PLATFORMS)):
