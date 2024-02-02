@@ -9,6 +9,8 @@ jobs:
   build-and-sign:
     name: "Build and sign"
     runs-on: ubuntu-latest
+    env:
+      IGNORED_FILES: '[ "manifest_*.json", "README.md", "Makefile", "scripts/" ]'
     steps:
       - uses: actions/checkout@v3
       - run: cat manifest_base.json manifest_firefox-desktop.json | jq -s add > manifest.json
@@ -17,6 +19,7 @@ jobs:
         uses: kewisch/action-web-ext@v1.2
         with:
           cmd: build
+          ignoreFiles: ${{ env.IGNORED_FILES }}
           filename: "{name}-{version}-firefox.xpi"
       - run: cat manifest_base.json manifest_chromium.json | jq -s add > manifest.json
       - name: "Build Chromium extension"
@@ -24,6 +27,7 @@ jobs:
         uses: kewisch/action-web-ext@v1.2
         with:
           cmd: build
+          ignoreFiles: ${{ env.IGNORED_FILES }}
           filename: "{name}-{version}-chromium.zip"
       - name: "Sign Firefox extension"
         id: web-ext-sign
