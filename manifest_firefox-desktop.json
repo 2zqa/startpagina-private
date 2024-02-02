@@ -1,0 +1,12 @@
+{
+  "chrome_settings_overrides": {
+    "homepage": "startpage.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "update_url": "https://2zqa.github.io/startpagina-private/updates.json",
+      "id": "{59f1a8c7-2750-453e-8ff9-6df3861a143b}"
+    }
+  },
+  "manifest_version": 2
+}
